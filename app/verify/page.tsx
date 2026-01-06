@@ -7,15 +7,68 @@ type VerificationStatus = "loading" | "success" | "error" | "expired";
 export default function VerifyPage() {
   const [status, setStatus] = useState<VerificationStatus>("loading");
   const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // Simulate verification process
+  // Parse URL hash parameters and handle verification
   useEffect(() => {
-    const timer = setTimeout(() => {
-      // Simulate successful verification - you can change this to test different states
-      setStatus("success");
-    }, 2500);
+    const parseHashParams = () => {
+      if (typeof window === "undefined") return null;
+      
+      const hash = window.location.hash.substring(1); // Remove the # symbol
+      if (!hash) return null;
+      
+      const params = new URLSearchParams(hash);
+      return {
+        error: params.get("error"),
+        errorCode: params.get("error_code"),
+        errorDescription: params.get("error_description")?.replace(/\+/g, " "),
+        accessToken: params.get("access_token"),
+        type: params.get("type"),
+      };
+    };
 
-    return () => clearTimeout(timer);
+    const handleVerification = () => {
+      const hashParams = parseHashParams();
+
+      // Check for errors in URL hash
+      if (hashParams?.error) {
+        const { errorCode, errorDescription } = hashParams;
+        
+        // Handle specific error codes
+        if (errorCode === "otp_expired" || errorDescription?.toLowerCase().includes("expired")) {
+          setStatus("expired");
+          setErrorMessage(errorDescription || "The verification link has expired.");
+        } else if (errorCode === "access_denied") {
+          setStatus("error");
+          setErrorMessage(errorDescription || "Access was denied. The link may be invalid.");
+        } else if (errorCode === "otp_disabled") {
+          setStatus("error");
+          setErrorMessage(errorDescription || "Email verification is currently disabled.");
+        } else if (errorCode === "validation_failed") {
+          setStatus("error");
+          setErrorMessage(errorDescription || "The verification link is invalid.");
+        } else {
+          setStatus("error");
+          setErrorMessage(errorDescription || "An error occurred during verification.");
+        }
+        return;
+      }
+
+      // Check for successful verification (access_token present)
+      if (hashParams?.accessToken) {
+        setStatus("success");
+        return;
+      }
+
+      // No hash params - simulate verification or handle as needed
+      const timer = setTimeout(() => {
+        setStatus("success");
+      }, 2500);
+
+      return () => clearTimeout(timer);
+    };
+
+    handleVerification();
   }, []);
 
   return (
@@ -57,8 +110,8 @@ export default function VerifyPage() {
           <div className="text-center">
             {status === "loading" && <LoadingState />}
             {status === "success" && <SuccessState email={email} />}
-            {status === "error" && <ErrorState onRetry={() => setStatus("loading")} />}
-            {status === "expired" && <ExpiredState email={email} />}
+            {status === "error" && <ErrorState onRetry={() => setStatus("loading")} errorMessage={errorMessage} />}
+            {status === "expired" && <ExpiredState email={email} errorMessage={errorMessage} />}
           </div>
 
           {/* Footer */}
@@ -182,7 +235,7 @@ function SuccessState({ email }: { email: string }) {
   );
 }
 
-function ErrorState({ onRetry }: { onRetry: () => void }) {
+function ErrorState({ onRetry, errorMessage }: { onRetry: () => void; errorMessage?: string }) {
   return (
     <div className="py-6">
       {/* Error icon */}
@@ -209,7 +262,7 @@ function ErrorState({ onRetry }: { onRetry: () => void }) {
         Verification Failed
       </h2>
       <p className="text-gray-400 text-sm mb-6">
-        We couldn&apos;t verify your email. The link may be invalid or something went wrong.
+        {errorMessage || "We couldn't verify your email. The link may be invalid or something went wrong."}
       </p>
 
       {/* Error message card */}
@@ -237,7 +290,7 @@ function ErrorState({ onRetry }: { onRetry: () => void }) {
   );
 }
 
-function ExpiredState({ email }: { email: string }) {
+function ExpiredState({ email, errorMessage }: { email: string; errorMessage?: string }) {
   return (
     <div className="py-6">
       {/* Expired icon */}
@@ -264,11 +317,13 @@ function ExpiredState({ email }: { email: string }) {
         Link Expired
       </h2>
       <p className="text-gray-400 text-sm mb-2">
-        This verification link has expired.
+        {errorMessage || "This verification link has expired."}
       </p>
-      <p className="text-purple-400 text-sm font-medium mb-6">
-        {email}
-      </p>
+      {email && (
+        <p className="text-purple-400 text-sm font-medium mb-6">
+          {email}
+        </p>
+      )}
 
       {/* Info card */}
       <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-6">
