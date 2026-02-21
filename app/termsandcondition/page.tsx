@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function TermsAndConditions() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -6,7 +8,7 @@ export default function TermsAndConditions() {
         <p className="text-sm text-gray-500 mb-8">Last Updated: January 10, 2026</p>
 
         <p className="text-gray-700 mb-6">
-          Welcome to <strong>SpendWise</strong>. By accessing or using our expense management 
+          Welcome to <strong>MoneyLynx</strong>. By accessing or using our expense management 
           application (&quot;App&quot;), you agree to be bound by these Terms and Conditions. 
           If you do not agree, please do not use the App.
         </p>
@@ -22,7 +24,7 @@ export default function TermsAndConditions() {
         <section className="mb-6">
           <h2 className="text-xl font-semibold text-gray-800 mb-3">2. Description of Service</h2>
           <p className="text-gray-700">
-            SpendWise helps users track expenses, manage budgets, upload receipts, and view 
+            MoneyLynx helps users track expenses, manage budgets, upload receipts, and view 
             financial summaries. The App is provided for personal and informational purposes 
             only and should not be considered financial or legal advice.
           </p>
@@ -51,7 +53,13 @@ export default function TermsAndConditions() {
             <li>We store and process your data (expenses, categories, notes, receipts) to provide app functionality.</li>
             <li>We do not sell your personal data.</li>
             <li>You are responsible for the accuracy of the data you enter.</li>
-            <li>Please refer to our Privacy Policy for details on data handling.</li>
+            <li>
+              Please refer to our{" "}
+              <Link href="/privacy-policy" className="text-blue-600 hover:underline">
+                Privacy Policy
+              </Link>{" "}
+              for details on data handling.
+            </li>
           </ul>
         </section>
 
@@ -106,7 +114,7 @@ export default function TermsAndConditions() {
         <section className="mb-6">
           <h2 className="text-xl font-semibold text-gray-800 mb-3">11. Intellectual Property</h2>
           <p className="text-gray-700">
-            All content, logos, UI, and code related to the App are the property of SpendWise 
+            All content, logos, UI, and code related to the App are the property of MoneyLynx 
             unless stated otherwise. You may not copy or redistribute without permission.
           </p>
         </section>
@@ -132,15 +140,15 @@ export default function TermsAndConditions() {
           <h2 className="text-xl font-semibold text-gray-800 mb-3">14. Contact Information</h2>
           <p className="text-gray-700">
             If you have any questions about these Terms, contact us at:{" "}
-            <a href="mailto:support@spendwise.app" className="text-blue-600 hover:underline">
-              support@spendwise.app
+            <a href="mailto:support@moneylynx.app" className="text-blue-600 hover:underline">
+              support@moneylynx.app
             </a>
           </p>
         </section>
 
         <div className="mt-8 pt-6 border-t border-gray-200">
           <p className="text-sm text-gray-500 text-center">
-            © 2026 SpendWise. All rights reserved.
+            © 2026 MoneyLynx. All rights reserved.
           </p>
         </div>
       </div>

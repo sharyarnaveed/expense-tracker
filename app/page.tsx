@@ -97,7 +97,7 @@ export default function Home() {
               href="#home"
               className="brand-mark text-sm font-semibold tracking-[0.2em] sm:text-base"
             >
-              FLOWLEDGER
+              MONEYLYNX
             </a>
 
             <nav className="hidden items-center gap-8 text-sm font-medium text-slate-700 md:flex">
@@ -139,7 +139,7 @@ export default function Home() {
                 grow every goal.
               </h1>
               <p className="max-w-xl text-base leading-8 text-slate-700 sm:text-lg">
-                FlowLedger turns daily spending into beautiful, actionable
+                MoneyLynx turns daily spending into beautiful, actionable
                 insights. Stay on budget, control subscriptions, and build
                 savings without friction.
               </p>
@@ -286,7 +286,7 @@ export default function Home() {
               <p className="section-kicker">Loved By Users</p>
               <h2 className="section-title">People stay because it really works.</h2>
               <p className="mt-4 text-sm leading-7 text-slate-700 sm:text-base">
-                FlowLedger is designed for daily consistency. Users report better
+                MoneyLynx is designed for daily consistency. Users report better
                 spending control within the first 2 weeks.
               </p>
               <div className="mt-7 space-y-3 text-sm text-slate-700 sm:text-base">
@@ -326,7 +326,7 @@ export default function Home() {
                 and a personalized onboarding demo.
               </p>
               <div className="mt-8 space-y-3 text-sm text-slate-700 sm:text-base">
-                <p>Email: hello@flowledger.app</p>
+                <p>Email: hello@moneylynx.app</p>
                 <p>Support: +1 (555) 784-2210</p>
                 <p>Office: Austin, Texas</p>
               </div>
@@ -368,8 +368,14 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mx-auto mt-12 max-w-6xl px-4 pb-6 text-center text-xs uppercase tracking-[0.14em] text-slate-500 sm:px-6 lg:px-8">
-        2026 FlowLedger. Smarter expenses for modern life.
+      <footer className="mx-auto mt-12 max-w-6xl px-4 pb-8 text-center text-xs uppercase tracking-[0.14em] text-slate-500 sm:px-6 lg:px-8">
+        <p>2026 MoneyLynx. Smarter expenses for modern life.</p>
+        <div className="mt-3 flex items-center justify-center gap-4 text-[11px] tracking-[0.12em]">
+          <a href="/privacy-policy" className="hover:text-slate-700">Privacy Policy</a>
+          <a href="/termsandcondition" className="hover:text-slate-700">
+            Terms &amp; Conditions
+          </a>
+        </div>
       </footer>
     </div>
   );
