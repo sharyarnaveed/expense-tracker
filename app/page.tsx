@@ -1,3 +1,7 @@
+import { submitContact } from "./actions/contact";
+import { ContactSubmitButton } from "./components/ContactSubmitButton";
+import { ContactToast } from "./components/ContactToast";
+
 const features = [
   {
     id: "01",
@@ -82,7 +86,12 @@ const highlights = [
   { label: "App rating", value: "4.9/5" },
 ];
 
-export default function Home() {
+type HomeProps = { searchParams: Promise<{ contact?: string }> };
+
+export default async function Home({ searchParams }: HomeProps) {
+  const params = await searchParams;
+  const contactStatus = params.contact;
+
   return (
     <div className="relative isolate overflow-hidden pb-14">
       <div className="ambient-orb orb-one" aria-hidden />
@@ -317,6 +326,15 @@ export default function Home() {
         </section>
 
         <section id="contact" className="mx-auto max-w-6xl px-4 pb-10 pt-8 sm:px-6 lg:px-8">
+          <ContactToast
+            status={
+              contactStatus === "success"
+                ? "success"
+                : contactStatus === "error"
+                  ? "error"
+                  : null
+            }
+          />
           <div className="contact-panel grid gap-8 rounded-[2rem] p-6 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:p-12">
             <div>
               <p className="section-kicker">Contact Us</p>
@@ -326,17 +344,15 @@ export default function Home() {
                 and a personalized onboarding demo.
               </p>
               <div className="mt-8 space-y-3 text-sm text-slate-700 sm:text-base">
-                <p>Email: hello@moneylynx.app</p>
-                <p>Support: +1 (555) 784-2210</p>
-                <p>Office: Austin, Texas</p>
+
               </div>
             </div>
 
-            <form className="grid gap-4" action="#" method="post">
-              <label className="field-label" htmlFor="name">
+            <form className="grid gap-4" action={submitContact}>
+              <label className="field-label" htmlFor="fullname">
                 Full Name
               </label>
-              <input id="name" name="name" type="text" className="field-input" placeholder="Your full name" />
+              <input id="fullname" name="fullname" type="text" className="field-input" placeholder="Your full name" required />
 
               <label className="field-label" htmlFor="email">
                 Email
@@ -347,6 +363,7 @@ export default function Home() {
                 type="email"
                 className="field-input"
                 placeholder="you@company.com"
+                required
               />
 
               <label className="field-label" htmlFor="message">
@@ -358,11 +375,10 @@ export default function Home() {
                 rows={4}
                 className="field-input resize-none"
                 placeholder="Tell us what you want to track"
+                required
               />
 
-              <button type="submit" className="btn-primary mt-2 px-6 py-3 text-sm sm:text-base">
-                Send Message
-              </button>
+              <ContactSubmitButton />
             </form>
           </div>
         </section>
