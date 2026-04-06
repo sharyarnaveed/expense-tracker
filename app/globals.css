@@ -254,13 +254,13 @@ body {
 }
 
 .floating-card-a {
-  left: 0.75rem;
-  top: 18%;
+  left: 0.45rem;
+  top: -10%;
 }
 
 .floating-card-b {
-  right: 0.75rem;
-  bottom: 10%;
+  right: 0rem;
+  bottom: -14%;
 }
 
 .feature-card {
@@ -518,7 +518,7 @@ body {
   .floating-card-a,
   .floating-card-b {
     position: static;
-    margin-top: 0.9rem;
+    margin-top: 0.5rem;
     max-width: 100%;
   }
 

@@ -134,7 +134,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <main>
         <section
           id="home"
-          className="hero-palette section-anchor mx-auto grid max-w-6xl gap-12 rounded-[2rem] px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8 lg:pt-20"
+          className="section-anchor mx-auto grid max-w-6xl gap-12 rounded-[2rem] px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8 lg:pt-20"
         >
           <div className="relative z-10 animate-rise space-y-8">
             <p className="eyebrow inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] sm:text-sm">
