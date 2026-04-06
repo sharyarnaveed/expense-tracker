@@ -93,7 +93,7 @@ export default async function Home({ searchParams }: HomeProps) {
   const contactStatus = params.contact;
 
   return (
-    <div className="relative isolate overflow-hidden pb-14">
+    <div className="theme-plum relative isolate overflow-hidden pb-14">
       <div className="ambient-orb orb-one" aria-hidden />
       <div className="ambient-orb orb-two" aria-hidden />
       <div className="ambient-orb orb-three" aria-hidden />
@@ -134,9 +134,9 @@ export default async function Home({ searchParams }: HomeProps) {
       <main>
         <section
           id="home"
-          className="mx-auto grid max-w-6xl gap-12 px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8 lg:pt-20"
+          className="hero-palette section-anchor mx-auto grid max-w-6xl gap-12 rounded-[2rem] px-4 pb-20 pt-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8 lg:pt-20"
         >
-          <div className="animate-rise space-y-8">
+          <div className="relative z-10 animate-rise space-y-8">
             <p className="eyebrow inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] sm:text-sm">
               Expense tracker for modern teams and solo builders
             </p>
@@ -175,7 +175,7 @@ export default async function Home({ searchParams }: HomeProps) {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
+          <div className="relative z-0 mx-auto w-full max-w-sm sm:max-w-md lg:max-w-none">
             <div className="phone-shell animate-float-slow">
               <div className="phone-top" />
               <div className="phone-screen">
@@ -235,7 +235,10 @@ export default async function Home({ searchParams }: HomeProps) {
           </div>
         </section>
 
-        <section id="features" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+        <section
+          id="features"
+          className="section-anchor mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8"
+        >
           <div className="mb-10 flex flex-col items-start justify-between gap-5 md:flex-row md:items-end">
             <div>
               <p className="section-kicker">Feature Highlights</p>
@@ -266,7 +269,7 @@ export default async function Home({ searchParams }: HomeProps) {
           </div>
         </section>
 
-        <section id="how" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <section id="how" className="section-anchor mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
           <div className="process-panel rounded-[2rem] p-6 sm:p-10 lg:p-12">
             <p className="section-kicker">How It Works</p>
             <h2 className="section-title max-w-2xl">
@@ -289,7 +292,10 @@ export default async function Home({ searchParams }: HomeProps) {
           </div>
         </section>
 
-        <section id="reviews" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
+        <section
+          id="reviews"
+          className="section-anchor mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8"
+        >
           <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="review-highlight">
               <p className="section-kicker">Loved By Users</p>
@@ -325,7 +331,10 @@ export default async function Home({ searchParams }: HomeProps) {
           </div>
         </section>
 
-        <section id="contact" className="mx-auto max-w-6xl px-4 pb-10 pt-8 sm:px-6 lg:px-8">
+        <section
+          id="contact"
+          className="section-anchor mx-auto max-w-6xl px-4 pb-10 pt-8 sm:px-6 lg:px-8"
+        >
           <ContactToast
             status={
               contactStatus === "success"
@@ -343,9 +352,6 @@ export default async function Home({ searchParams }: HomeProps) {
                 Tell us about your needs and we will send a setup guide, pricing,
                 and a personalized onboarding demo.
               </p>
-              <div className="mt-8 space-y-3 text-sm text-slate-700 sm:text-base">
-
-              </div>
             </div>
 
             <form className="grid gap-4" action={submitContact}>

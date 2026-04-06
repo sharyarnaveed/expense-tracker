@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HashScrollFix } from "./components/HashScrollFix";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
+        <HashScrollFix />
         {children}
       </body>
     </html>
